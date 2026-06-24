@@ -25,6 +25,7 @@ function operate (){
 
 const buttons = document.querySelectorAll("button");
 const display = document.querySelector("#display");
+const opps = document.querySelectorAll(".opp");
 
 
 function addEvents () {
@@ -34,6 +35,7 @@ function addEvents () {
 }
 
 function btnClick (e) {
+    updateDisplay("opp");
     let btn = e.target.textContent;
     if (isNumber(btn)){
         if(last == "opp"){
@@ -69,8 +71,12 @@ function btnClick (e) {
     }
 
     if(e.target.classList[0] == "opp"){
+        if(last == "="){
+            return;
+        }
         if(last=="opp"){
             opperator = btn;
+            e.target.style.backgroundColor = "white";
             return;
         }
         if(opperator!=""){
@@ -80,6 +86,7 @@ function btnClick (e) {
         opperator=btn;
         last = "opp";
         updateDisplay("num");
+        e.target.style.backgroundColor = "white";
     }
 
     if(btn=="="){
@@ -87,7 +94,7 @@ function btnClick (e) {
         current = "0";
         other = "0";
         opperator = "";
-        last = "="
+        last = "=";
         return;
     }
     
@@ -106,18 +113,25 @@ function updateDisplay (type) {
             }
             return;
         }
-        display.textContent = current;                 
+        display.textContent = current;   
+        return;              
     }
-    else{
-        if(type.toString().replace(".","").length>7){
-            display.textContent = "Too Big"
-            if(type.toString().replace(".","") != type.toString){
-                display.textContent = type.toString().slice(0,8);
-            }
-            return;
+    if(type=="opp"){
+        for (const button of opps) {
+            button.style.backgroundColor = "#b3b3b3";
         }
-        display.textContent = type;  
+        return;
     }
+
+    if(type.toString().replace(".","").length>7){
+        display.textContent = "Too Big"
+        if(type.toString().replace(".","") != type.toString){
+            display.textContent = type.toString().slice(0,8);
+        }
+        return;
+    }
+    display.textContent = type;  
+
 }
 
 addEvents();
