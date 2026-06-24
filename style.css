@@ -10,6 +10,9 @@ body{
     display: flex;
     flex-direction: column;
     padding-bottom: 30px;
+    border-width: 2px;
+    border-style: outset;
+    border-color: #545454;
 }
 
 #buttons{
@@ -37,6 +40,9 @@ body{
     padding-right: 35px;
     align-items: center;
     font-size: 50px;
+    border-width: 4px;
+    border-style: inset;
+    border-color: #545454;
 }
 
 #line{
@@ -57,4 +63,5 @@ button{
     height: 50px;
     width: 50px;
     border-radius: 10px;
+    border-width: 4px;
 }
