@@ -6,7 +6,12 @@ let last = "";
 const add = () => Number(current)+Number(other);
 const sub = () => other-current;
 const mul = () => current*other;
-const div = () => other/current;
+const div = () => {
+    if(current==0){
+        return "Math Err";
+    }
+    return other/current;
+}
 
 function operate (){
     if (opperator == "+") {
@@ -81,8 +86,16 @@ function btnClick (e) {
         }
         if(opperator!=""){
             current=operate().toString();
+            if(current=="Math Err"){
+                current = "0";
+                other = "0";
+                opperator = "";
+                last = "=";
+                updateDisplay("Math Err");
+                return;
+            }
         }
-        
+
         opperator=btn;
         last = "opp";
         updateDisplay("num");
@@ -106,7 +119,11 @@ function isNumber (number) {
 
 function updateDisplay (type) {
     if(type=="num"){
-        if(current.replace(".","").length>7){
+        if(typeof(current) == "string"){
+            display.textContent = current;
+            return;
+        }
+        if(current.toString().replace(".","").length>7){
             display.textContent = "Too Big"
             if(current.replace(".","") != current){
                 display.textContent = current.slice(0,8);
