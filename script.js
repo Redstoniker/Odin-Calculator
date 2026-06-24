@@ -40,9 +40,9 @@ function addEvents () {
 }
 
 function btnClick (e) {
-    updateDisplay("opp");
     let btn = e.target.textContent;
     if (isNumber(btn)){
+        updateDisplay("opp");
         if(last == "opp"){
         other = current;
         current = "0";
@@ -59,14 +59,21 @@ function btnClick (e) {
     }
 
     if(btn == ","){
+        updateDisplay("opp");
+        if(last == "opp"){
+        other = current;
+        current = "0";
+        }
         if(current.replace(".","") == current){
             current += ".";
         }
         updateDisplay("num");
+        last = ",";
         return;
     }
 
     if(btn=="AC"){
+        updateDisplay("opp");
         current = "0";
         other = "0";
         opperator = "";
@@ -76,7 +83,8 @@ function btnClick (e) {
     }
 
     if(e.target.classList[0] == "opp"){
-        if(last == "="){
+        updateDisplay("opp");
+        if(last == "=" || last == "AC"){
             return;
         }
         if(last=="opp"){
@@ -103,6 +111,10 @@ function btnClick (e) {
     }
 
     if(btn=="="){
+        if(last == "opp"){
+            return;
+        }
+        updateDisplay("opp");
         updateDisplay(operate())
         current = "0";
         other = "0";
