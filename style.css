@@ -64,4 +64,7 @@ button{
     width: 50px;
     border-radius: 10px;
     border-width: 4px;
+    border-style: outset;
+    border-color: #545454;
+    color: black;
 }
