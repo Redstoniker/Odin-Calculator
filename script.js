@@ -134,7 +134,7 @@ function updateDisplay (type) {
         if(current.toString().replace(".","").length>7){
             display.textContent = "Too Big";
         
-            if(current.toString().replace(".","") != current.toString){
+            if(current.toString().includes(".") && current.indexOf(".")<8){
                 display.textContent = current.toString().slice(0,8);
             }
             return;
@@ -151,7 +151,7 @@ function updateDisplay (type) {
 
     if(type.toString().replace(".","").length>7){
         display.textContent = "Too Big"
-        if(type.toString().replace(".","") != type.toString){
+        if(type.toString().includes(".") && current.indexOf(".")<8){
             display.textContent = type.toString().slice(0,8);
         }
         return;
