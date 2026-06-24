@@ -132,11 +132,12 @@ function isNumber (number) {
 function updateDisplay (type) {
     if(type=="num"){
         if(current.toString().replace(".","").length>7){
-        display.textContent = "Too Big";
-        return;
-        }
-        if(current.toString().replace(".","") != current.toString()){
-            display.textContent = current.toString().slice(0,8);
+            display.textContent = "Too Big";
+        
+            if(current.toString().replace(".","") != current.toString){
+                display.textContent = current.toString().slice(0,8);
+            }
+            return;
         }
         display.textContent = current;
         return;
