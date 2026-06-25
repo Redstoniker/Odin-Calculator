@@ -9,7 +9,7 @@ const sub = () => other-current;
 const mul = () => current*other;
 const div = () => {
     if(current==0){
-        return "Math Err";
+        return "MathErr";
     }
     return other/current;
 }
@@ -100,7 +100,7 @@ function btnClick (e) {
                 other = "0";
                 opperator = "";
                 last = "=";
-                updateDisplay("Math Err");
+                updateDisplay("MathErr");
                 return;
             }
         }
@@ -132,8 +132,6 @@ function isNumber (number) {
 
 async function updateDisplay (type) {
     if(type=="num"){
-        display.textContent = "";
-        await delay(20);
         if(current.toString().replace(".","").length>7){
             display.textContent = "Too Big";
         
