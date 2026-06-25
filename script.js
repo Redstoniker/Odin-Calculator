@@ -3,6 +3,7 @@ let current = "0";
 let opperator = "";
 let last = "";
 
+const delay = ms => new Promise(resolve => setTimeout(resolve, ms))
 const add = () => Number(current)+Number(other);
 const sub = () => other-current;
 const mul = () => current*other;
@@ -129,8 +130,10 @@ function isNumber (number) {
     return Number(number) < 10;
 }
 
-function updateDisplay (type) {
+async function updateDisplay (type) {
     if(type=="num"){
+        display.textContent = "";
+        await delay(20);
         if(current.toString().replace(".","").length>7){
             display.textContent = "Too Big";
         
@@ -148,8 +151,10 @@ function updateDisplay (type) {
         }
         return;
     }
-
+    display.textContent = "";
+    await delay(20);
     if(type.toString().replace(".","").length>7){
+        
         display.textContent = "Too Big"
         if(type.toString().includes(".") && current.indexOf(".")<8){
             display.textContent = type.toString().slice(0,8);
