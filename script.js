@@ -53,6 +53,7 @@ function btnClick (e) {
                 current = ""
             }
             current+=btn;
+            colorButton(e.target);
         updateDisplay("num");
         }
         last = "num";
@@ -67,6 +68,7 @@ function btnClick (e) {
         }
         if(current.replace(".","") == current){
             current += ".";
+            colorButton(e.target);
         }
         updateDisplay("num");
         last = ",";
@@ -78,8 +80,9 @@ function btnClick (e) {
         current = "0";
         other = "0";
         opperator = "";
+        colorButton(e.target);
         updateDisplay("num");
-        last = "AC"
+        last = "AC";
         return;
     }
 
@@ -116,6 +119,7 @@ function btnClick (e) {
             return;
         }
         updateDisplay("opp");
+        colorButton(e.target)
         updateDisplay(operate())
         current = "0";
         other = "0";
@@ -151,7 +155,7 @@ async function updateDisplay (type) {
     }
     display.textContent = "";
     await delay(20);
-    if(type.toString().replace(".","").length>7){
+    if(type.toString().replace(".","").length>99){
         
         display.textContent = "Too Big"
         if(type.toString().includes(".") && current.indexOf(".")<8){
@@ -161,6 +165,20 @@ async function updateDisplay (type) {
     }
     display.textContent = type;  
 
+}
+
+async function colorButton (target) {
+    target.style.borderStyle = "inset";
+    target.style.backgroundColor = "#FFFFFF";
+    if(target.textContent == "="){
+        target.style.backgroundColor = "#F0F0F0"
+    }
+    await delay(100);
+    target.style.backgroundColor = "#F0F0F0";
+    target.style.borderStyle = "outset";
+    if(target.textContent == "="){
+        target.style.backgroundColor = "#b3b3b3"
+    }
 }
 
 addEvents();
